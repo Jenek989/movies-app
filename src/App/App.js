@@ -1,5 +1,11 @@
+import { Component } from 'react';
+
 import './App.css';
 
-function App() {}
+import MovieList from '../MovieList/MovieList';
 
-export default App;
+export default class App extends Component {
+  render() {
+    return <MovieList />;
+  }
+}
