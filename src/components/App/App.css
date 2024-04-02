@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+  background-color: #f7f7f7;
+}
+
+.App {
+  margin: 0 auto 60px auto;
+  box-sizing: border-box;
+  width: 1010px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  margin: 32px 36px 0;
+}
+
+.tabs {
+  padding: 10px 0;
+  color: #1890ff;
+}
+
+.searchBar {
+  height: 40px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter';
+  font-size: 14px;
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.main {
+  margin: 36px;
+}
+
+.footer {
+  width: 1010px;
+  display: flex;
+  position: sticky;
+  background-color: #ffffff;
+  box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.1);
+  bottom: 0;
+  z-index: 1000;
+}
+
+.pagination {
+  margin: 18px auto 18px auto;
+}
+
+@media (max-width: 768px) {
+  .App {
+    width: 420px;
+  }
+  .header {
+    margin: 20px 10px 0;
+  }
+  .main {
+    margin: 16px;
+  }
+}

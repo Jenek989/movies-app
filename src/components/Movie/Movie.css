@@ -1,0 +1,46 @@
+.movieCard {
+  width: 454px;
+  height: 280px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.spin {
+  margin: auto;
+}
+
+.movieText {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.title {
+  width: 200px;
+  margin-top: 10px;
+}
+
+.releaseDate {
+  margin-bottom: 10px;
+}
+
+.tags {
+  margin-bottom: 10px;
+}
+
+.rate {
+  margin-top: auto;
+  padding-bottom: 20px;
+}
+
+.progressBar {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+@media (max-width: 768px) {
+  .movieCard {
+    width: 387px;
+  }
+}
