@@ -8,6 +8,10 @@
   margin: auto;
 }
 
+.imageSmall {
+  display: none;
+}
+
 .movieText {
   display: flex;
   position: relative;
@@ -28,19 +32,97 @@
   margin-bottom: 10px;
 }
 
+.tagSpan {
+  margin: 0 4px 4px 0;
+}
+
+.overviewMobile {
+  display: none;
+}
+
 .rate {
   margin-top: auto;
   padding-bottom: 20px;
 }
 
 .progressBar {
+  display: flex;
   position: absolute;
   right: 10px;
   top: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border: 2px solid #e9d100;
+  border-radius: 50%;
 }
 
 @media (max-width: 768px) {
   .movieCard {
     width: 387px;
+    height: 245px;
+  }
+
+  .headerCard {
+    overflow: hidden;
+  }
+
+  .movieText {
+    padding: 0 10px;
+  }
+
+  .image {
+    display: none;
+  }
+
+  .imageSmall {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .title {
+    width: 250px;
+    height: 25px;
+    overflow-y: scroll;
+  }
+
+  .title::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .tags {
+    display: flex;
+    width: 100%;
+    height: 24px;
+    overflow-y: scroll;
+  }
+
+  .tags::after {
+    content: '';
+    position: absolute;
+    right: 0; /* Расположение справа от элемента */
+    height: 24px; /* Высота равна высоте родителя */
+    width: 40px; /* Ширина псевдоэлемента */
+    background: linear-gradient(270deg, #f8f8f8 16.84%, rgba(248, 248, 248, 0) 100%);
+  }
+
+  .tags::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .overviewFull {
+    display: none;
+  }
+
+  .overviewMobile {
+    display: block;
+  }
+
+  .rate {
+    margin: auto 0 0 auto;
+    padding-bottom: 20px;
   }
 }
