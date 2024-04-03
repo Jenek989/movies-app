@@ -117,7 +117,7 @@ export default class App extends Component {
       }
     }
     if (e === '2') {
-      this.setState({ loading: true }, this.getRatedMoviesListFromApi(currentPage));
+      this.setState({ loading: true }, this.getRatedMoviesListFromApi());
     }
   };
 
