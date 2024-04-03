@@ -51,7 +51,7 @@ export default class Movie extends Component {
   render() {
     const { movie, loading } = this.props;
     const { rating } = this.state;
-    const rows = movie.title.length < 23 ? { rows: 4 } : { rows: 3 };
+    const rows = movie.title.length < 23 && movie.genre_ids.length < 4 ? { rows: 5 } : { rows: 3 };
     const rateAverage = movie.vote_average.toFixed(1);
 
     if (loading) {
@@ -109,7 +109,7 @@ export default class Movie extends Component {
             </Flex>
           </Flex>
           <Paragraph className="overviewFull" ellipsis={rows}>
-            {this.getShortedOverview(movie.overview, 200)}
+            {this.getShortedOverview(movie.overview, 175)}
           </Paragraph>
           <Paragraph className="overviewMobile" ellipsis={rows}>
             {this.getShortedOverview(movie.overview, 225)}
