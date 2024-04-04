@@ -50,7 +50,6 @@ export default class Movie extends Component {
     const { moviesApi, movie } = this.props;
     moviesApi.sendRateMovie(movie.id, rate);
     ratingStore[movie.id] = rate;
-    console.log(ratingStore);
     this.setState({ rating: rate });
   };
 
