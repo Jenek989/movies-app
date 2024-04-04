@@ -1,0 +1,14 @@
+.imageSmall {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .image {
+    display: none;
+  }
+
+  .imageSmall {
+    display: block;
+    margin-top: 10px;
+  }
+}

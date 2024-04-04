@@ -10,7 +10,7 @@ export default class MovieList extends Component {
   renderMoviesList = (arr) => {
     return arr.map((movie) => {
       return (
-        <Col key={movie.id} md={12} sm={24} xs={24}>
+        <Col key={movie.id} className="movieListCard" lg={12} md={24} sm={24} xs={24}>
           <Movie moviesApi={this.props.moviesApi} movie={movie} loading={this.props.loading} />
         </Col>
       );

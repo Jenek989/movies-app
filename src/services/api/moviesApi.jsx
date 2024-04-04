@@ -57,8 +57,7 @@ export default class MoviesApi extends Component {
       if (!window.navigator.onLine) throw new Error('You are Offline');
       const pageUrl = page ? `&page=${page}` : '';
       const url = `${this._baseUrl}discover/movie?api_key=${this._apiKey}${pageUrl}`;
-      const res = await fetch(url);
-      return await res.json();
+      return await this.getData(url);
     } catch (error) {
       throw new Error(error.message);
     }
@@ -70,8 +69,7 @@ export default class MoviesApi extends Component {
       const pageUrl = page ? `&page=${page}` : '';
       const keyWordsUrl = `&query=${keyWords}`;
       const url = `${this._baseUrl}search/movie?api_key=${this._apiKey}${keyWordsUrl}${pageUrl}`;
-      const res = await fetch(url);
-      return await res.json();
+      return await this.getData(url);
     } catch (error) {
       throw new Error(error.message);
     }
@@ -81,8 +79,7 @@ export default class MoviesApi extends Component {
     try {
       if (!window.navigator.onLine) throw new Error('You are Offline');
       const url = `${this._baseUrl}genre/movie/list?api_key=${this._apiKey}`;
-      const res = await fetch(url);
-      return await res.json();
+      return await this.getData(url);
     } catch (error) {
       throw new Error(error.message);
     }

@@ -30,15 +30,21 @@ export default class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { currentPage, isFinded, label, isResultsEmpty } = this.state;
-    if (prevState.currentPage !== currentPage && !isFinded) {
+    const { currentPage, isFinded, label, isResultsEmpty, tabRated } = this.state;
+    if (prevState.currentPage !== currentPage && !isFinded && !tabRated) {
       this.setState({ loading: true }, this.getMoviesListFromApi(currentPage));
     }
-    if (prevState.currentPage !== currentPage && isFinded) {
+    if (prevState.currentPage !== currentPage && isFinded && !tabRated) {
       this.setState({ loading: true }, this.getFindedMoviesListFromApi(currentPage, label));
     }
-    if (isResultsEmpty === true) {
+    if (isResultsEmpty === true && !isFinded) {
       debounce(this.getMoviesListFromApi, 1500)();
+    }
+    if (isResultsEmpty === true && isFinded) {
+      debounce(() => this.getFindedMoviesListFromApi(currentPage, label), 1500)();
+    }
+    if (prevState.currentPage !== currentPage && tabRated) {
+      this.setState({ loading: true }, this.getRatedMoviesListFromApi(currentPage));
     }
   }
 
@@ -52,7 +58,12 @@ export default class App extends Component {
   };
 
   handlePageChange = (page) => {
+    this.scrollToTop();
     this.setState({ currentPage: page });
+  };
+
+  scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   getFindedMoviesListFromApi = (currentPage, keyWords) => {
@@ -65,6 +76,7 @@ export default class App extends Component {
         loading: false,
         isFinded: true,
         isResultsEmpty: moviesLength,
+        tabRated: false,
       });
     });
   };
@@ -107,17 +119,17 @@ export default class App extends Component {
 
   handleTabChange = (e) => {
     const { isFinded, currentPage, tabRated, label } = this.state;
-    this.setState({ tabRated: !tabRated });
+    this.setState({ currentPage: 1 });
     if (e === '1') {
       if (isFinded) {
-        this.setState({ loading: true }, this.getFindedMoviesListFromApi(currentPage, label));
+        this.setState({ loading: true, tabRated: !tabRated }, this.getFindedMoviesListFromApi(currentPage, label));
       }
       if (!isFinded) {
-        this.setState({ loading: true }, this.getMoviesListFromApi(currentPage));
+        this.setState({ loading: true, tabRated: !tabRated }, this.getMoviesListFromApi(currentPage));
       }
     }
     if (e === '2') {
-      this.setState({ loading: true }, this.getRatedMoviesListFromApi());
+      this.setState({ loading: true, tabRated: !tabRated }, this.getRatedMoviesListFromApi(1));
     }
   };
 
@@ -131,8 +143,9 @@ export default class App extends Component {
         <header className="header">
           <div className="menu">
             <TabsItem tabKey={tabKey} handleTabChange={this.handleTabChange} />
+            <a id="top" href="#top" />
           </div>
-          <div className={tabRated ? 'searchBarHide' : ''}>
+          <div className={tabRated ? 'searchBarHide' : 'searchBarWrapper'}>
             <Input
               className="searchBar"
               placeholder="Type to search..."
