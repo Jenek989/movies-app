@@ -2,10 +2,11 @@ import { Component } from 'react';
 import { Col, Row, Typography, Tag, Rate, Flex, Spin } from 'antd';
 import { format, parseISO } from 'date-fns';
 
-import './Movie.css';
 import GenresContext from '../GenresContext/GenresContext';
 import ratingStore from '../RatingStore/RatingStore';
 import Poster from '../Poster/Poster';
+
+import './Movie.css';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -13,6 +14,7 @@ export default class Movie extends Component {
   state = {
     rating: null,
   };
+
   getGenresItems = (genresList, genres) => {
     const filteredGenres = genresList.filter((genre) => genres.includes(genre.id));
     return filteredGenres.map((genre) => {
