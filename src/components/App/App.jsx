@@ -40,6 +40,9 @@ export default class App extends Component {
     if (isResultsEmpty === true && !tabRated) {
       debounce(this.getMoviesListFromApi, 1500)();
     }
+    if (isResultsEmpty === true && !isFinded && tabRated) {
+      debounce(this.getMoviesListFromApi, 1500)();
+    }
     if (isResultsEmpty === true && isFinded && tabRated) {
       debounce(() => this.getFindedMoviesListFromApi(currentPage, label), 1500)();
     }
