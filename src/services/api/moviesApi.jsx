@@ -54,7 +54,6 @@ export default class MoviesApi extends Component {
 
   getMovieList = async (page) => {
     try {
-      if (!window.navigator.onLine) throw new Error('You are Offline');
       const pageUrl = page ? `&page=${page}` : '';
       const url = `${this._baseUrl}discover/movie?api_key=${this._apiKey}${pageUrl}`;
       return await this.getData(url);
@@ -65,7 +64,6 @@ export default class MoviesApi extends Component {
 
   getFindedMovieList = async (page, keyWords) => {
     try {
-      if (!window.navigator.onLine) throw new Error('You are Offline');
       const pageUrl = page ? `&page=${page}` : '';
       const keyWordsUrl = `&query=${keyWords}`;
       const url = `${this._baseUrl}search/movie?api_key=${this._apiKey}${keyWordsUrl}${pageUrl}`;
@@ -77,7 +75,6 @@ export default class MoviesApi extends Component {
 
   getMovieGanresList = async () => {
     try {
-      if (!window.navigator.onLine) throw new Error('You are Offline');
       const url = `${this._baseUrl}genre/movie/list?api_key=${this._apiKey}`;
       return await this.getData(url);
     } catch (error) {
@@ -87,7 +84,6 @@ export default class MoviesApi extends Component {
 
   getRatedMoviesList = async (page = 1) => {
     try {
-      if (!window.navigator.onLine) throw new Error('You are Offline');
       const url = `${this._baseUrl}guest_session/${await this.guestSessionId}/rated/movies?api_key=${this._apiKey}&page=${page}`;
       const rate = true;
       return await this.getData(url, rate);
@@ -98,7 +94,6 @@ export default class MoviesApi extends Component {
 
   sendRateMovie = async (id, rate) => {
     try {
-      if (!window.navigator.onLine) throw new Error('You are Offline');
       const url = `${this._baseUrl}movie/${id}/rating?api_key=${this._apiKey}&guest_session_id=${await this.guestSessionId}`;
       return await this.postData(url, rate);
     } catch (error) {
