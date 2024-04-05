@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { message } from 'antd';
 
 export default class MoviesApi extends Component {
   constructor() {
@@ -25,7 +26,7 @@ export default class MoviesApi extends Component {
 
   getData = async (url, rate = false) => {
     try {
-      if (!window.navigator.onLine) throw new Error('You are Offline');
+      if (!window.navigator.onLine) message.error('Проверьте подключение к интернету');
       const res = await fetch(url);
       if (!res.ok && rate) return { results: [] };
       if (!res.ok && !rate) throw new Error(`Could not fetch ${this._BaseUrl} ${res.status}`);
@@ -37,7 +38,7 @@ export default class MoviesApi extends Component {
 
   postData = async (url, value) => {
     try {
-      if (!window.navigator.onLine) throw new Error('You are Offline');
+      if (!window.navigator.onLine) message.error('Проверьте подключение к интернету');
       const res = await fetch(url, {
         method: 'POST',
         headers: {
